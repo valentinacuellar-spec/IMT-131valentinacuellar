@@ -1,0 +1,5 @@
+error: memoria llena
+info: proceso iniciado
+warning: espacio bajo
+error: archivo no encontrado
+info: proceso terminado
