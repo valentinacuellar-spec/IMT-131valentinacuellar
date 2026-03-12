@@ -1,0 +1,198 @@
+PARTE 1: CREACION DE DIRECTORIOS
+
+
+mkdir practica_sistema
+cd practica_sistema
+mkdir datos
+mkdir scripts
+mkdir reportes
+mkdir backup
+
+ls -l
+
+
+PARTE 2: CREACION DE ARCHIVOS
+
+cd datos
+
+echo "ana" >> usuarios.txt
+echo "juan" >> usuarios.txt
+echo "pedro" >> usuarios.txt
+echo "ana" >> usuarios.txt
+echo "maria" >> usuarios.txt
+echo "juan" >> usuarios.txt
+echo "lucas" >> usuarios.txt
+
+
+echo "info: login correcto ana" >> accesos.log
+echo "error: contrasena incorrecta juan" >> accesos.log
+echo "info: login correcto maria" >> accesos.log
+echo "warning: intento sospechoso pedro" >> accesos.log
+echo "error: usuario no encontrado carlos" >> accesos.log
+echo "info: login correcto lucas" >> accesos.log
+echo "error: contrasena incorrecta ana" >> accesos.log
+
+cd ..
+
+PARTE 3: EXPLORACION DEL SISTEMA
+
+Ejercicio 1
+
+ls -l
+
+Salida ejemplo:
+
+datos
+scripts
+reportes
+backup
+
+
+Ejercicio 2
+
+ls datos
+
+Salida:
+
+usuarios.txt
+accesos.log
+
+
+Ejercicio 3
+
+ls -l datos
+
+Salida ejemplo:
+
+usuarios.txt
+accesos.log
+
+
+PARTE 4: BUSQUEDA DE ARCHIVOS
+
+
+Ejercicio 4
+
+find . -name "*.txt"
+
+Salida:
+
+./datos/usuarios.txt
+
+
+Ejercicio 5
+
+find . -name "*.log"
+
+Salida:
+
+./datos/accesos.log
+
+
+Ejercicio 6
+
+find . -name "*.txt" | wc -l
+
+Salida:
+
+1
+
+
+PARTE 5: PROCESAMIENTO DE TEXTO
+
+Ejercicio 7
+
+grep "error" datos/accesos.log
+
+Salida:
+
+error: contrasena incorrecta juan
+error: usuario no encontrado carlos
+error: contrasena incorrecta ana
+
+
+Ejercicio 8
+
+grep "error" datos/accesos.log | wc -l
+
+Salida:
+
+3
+
+
+Ejercicio 9
+
+grep "info" datos/accesos.log
+
+Salida:
+
+info: login correcto ana
+info: login correcto maria
+info: login correcto lucas
+
+
+Ejercicio 10
+
+sort datos/usuarios.txt
+
+Salida:
+
+ana
+ana
+juan
+juan
+lucas
+maria
+pedro
+
+
+Ejercicio 11
+
+wc -l datos/usuarios.txt
+
+Salida:
+
+7 usuarios.txt
+
+
+Ejercicio 12
+
+grep "error" datos/accesos.log | sort
+
+
+
+PARTE 6: GENERACION DE REPORTE
+
+
+wc -l datos/usuarios.txt > reportes/reporte_sistema.txt
+
+grep "error" datos/accesos.log | wc -l >> reportes/reporte_sistema.txt
+
+sort datos/usuarios.txt >> reportes/reporte_sistema.txt
+
+cat reportes/reporte_sistema.txt
+
+
+PARTE 7: SCRIPT
+
+cd scripts
+
+nano analisis.sh
+
+Contenido del script:
+
+  !/bin/bash
+
+echo "Numero total de usuarios:"
+wc -l ../datos/usuarios.txt
+
+echo "Numero total de errores:"
+grep "error" ../datos/accesos.log | wc -l
+
+echo "Usuarios ordenados:"
+sort ../datos/usuarios.txt
+
+
+chmod +x analisis.sh
+
+./analisis.sh
